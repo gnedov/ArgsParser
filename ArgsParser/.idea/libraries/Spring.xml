@@ -1,16 +1,13 @@
 <component name="libraryTable">
   <library name="Spring" type="spring">
     <CLASSES>
-      <root url="jar://H:/Libraries/Spring_lib/spring-beans-4.0.0.RELEASE.jar!/" />
-      <root url="file://H:/Libraries/Spring_lib" />
-      <root url="file://H:/Libraries/Spring_lib" />
+      <root url="file://$PROJECT_DIR$/lib/Spring_lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="file://H:/Libraries/Spring_lib" />
-      <root url="file://H:/Libraries/Spring_lib" />
+      <root url="file://$PROJECT_DIR$/lib/Spring_lib" />
     </SOURCES>
-    <jarDirectory url="file://H:/Libraries/Spring_lib" recursive="false" />
-    <jarDirectory url="file://H:/Libraries/Spring_lib" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/Spring_lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/Spring_lib" recursive="false" type="SOURCES" />
   </library>
 </component>
