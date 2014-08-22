@@ -21,8 +21,8 @@ public class ConstActionTypeEnum {
     public static final int HELP_CODE = 505; // like SOS :)
 
     public static final int SEARCH_CODE = 600;
-    public static final int SEARCH_ALL_CODE = 601;
-    public static final int SEARCH_BY_TITLE_CODE = 602;
+    public static final int SEARCH_ALL_CODE = SEARCH_CODE + 1;
+    public static final int SEARCH_BY_TITLE_CODE = SEARCH_CODE + 2;
     public static final int EXIT_CODE = 999;
 
     public final Map<String, Integer> commandCode = new HashMap<>();

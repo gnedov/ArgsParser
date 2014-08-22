@@ -100,12 +100,14 @@ public class Main {
     private static boolean validateTimeStartEnd(List<String> timeList) {
         DateTime timeStart = null;
         DateTime timeEnd = null;
-        try {
-            timeStart = DateTime.parse(timeList.get(0));
-            timeEnd = DateTime.parse(timeList.get(1));
-        } catch (Exception e) {
-            System.out.println("Log: date conversion error " + e.getMessage());
-        }
+        if (timeList.size() > 0) {
+            try {
+                timeStart = DateTime.parse(timeList.get(0));
+                timeEnd = DateTime.parse(timeList.get(1));
+            } catch (Exception e) {
+                System.out.println("Log: date conversion error " + e.getMessage());
+            }
+        } else    System.out.println("Log: date is not defined!");
 
         if (timeStart != null) {
             if (timeStart.isAfter(timeEnd)) {
