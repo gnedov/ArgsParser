@@ -2,12 +2,9 @@ package com.agn.cmdparser;
 
 import com.beust.jcommander.ParameterException;
 
-import java.util.List;
 import java.util.Scanner;
 
 import static com.agn.cmdparser.ConstActionTypeEnum.*;
-
-import org.joda.time.DateTime;
 
 public class Main {
 
@@ -22,6 +19,7 @@ public class Main {
         ArgumentParser argParser = new ArgumentParser();
         Scanner in = new Scanner(System.in);
         String strToParse = null;
+        Validator validator = new Validator();
 
 //hardcode! this line only for testing
         strToParse = "create -t eventTitle_hc -d descr bnbnb kkfkf -ts 2014-07-02T16:22:34 -te 2014-07-02T23:11:11 -att eeeee@mail.ff vvvvv@mail.ff ";
@@ -64,75 +62,20 @@ public class Main {
                 break;
             }
             if (evParameters != null) {
-                if (doValidate(evParameters))
+                if (validator.doValidate(evParameters))
                     doAction(evParameters);
             }
             evParameters = null;
         }
     }
 
-    private static boolean doValidate(EventParameters evParameters) {
-        System.out.println(" validate phase starts....");
-
-        switch (evParameters.getActionTypeId()) {
-            case CREATE_CODE:
-                return (validateTitle(evParameters.getTitleList().get(0))
-                        && validateTimeStartEnd(evParameters.getTimeList()));
-
-            case UPDATE_CODE:
-                return true;
-
-            case SEARCH_CODE:
-
-                return true;
-
-            case SEARCH_ALL_CODE:
-                return true;
-
-            case SEARCH_BY_TITLE_CODE:
-                return validateTitle(evParameters.getTitleList().get(0));
-
-            default:
-                return true;
-        }
-    }
-
-    private static boolean validateTimeStartEnd(List<String> timeList) {
-        DateTime timeStart = null;
-        DateTime timeEnd = null;
-        if (timeList.size() > 0) {
-            try {
-                timeStart = DateTime.parse(timeList.get(0));
-                timeEnd = DateTime.parse(timeList.get(1));
-            } catch (Exception e) {
-                System.out.println("Log: date conversion error " + e.getMessage());
-            }
-        } else    System.out.println("Log: date is not defined!");
-
-        if (timeStart != null) {
-            if (timeStart.isAfter(timeEnd)) {
-                System.out.println("Please set END date in future relatively to START date.");
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private static boolean validateTitle(String title) {
-        if (title == null || title.isEmpty()) {
-            System.out.println("Please set proper event title!");
-            return false;
-        }
-        return true;
-    }
 
     private static void doAction(EventParameters evParameters) {
 
         switch (evParameters.getActionTypeId()) {
             case CREATE_CODE:
-                //call service.createEvent(evParameters.getTitleList(), ...)
-                System.out.println("Event <" + evParameters.getTitleList().get(0) + "> is created! Congratulations!");
+                //call service.createEvent(evParameters.getTitle(), ...)
+                System.out.println("Event <" + evParameters.getTitle() + "> is created! Congratulations!");
                 break;
             case UPDATE_CODE:
                 // call update ...

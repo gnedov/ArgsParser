@@ -5,7 +5,10 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 import com.beust.jcommander.ParametersDelegate;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.agn.cmdparser.ConstActionTypeEnum.*;
 
@@ -142,21 +145,20 @@ public class ArgumentParser {
         @Override
         public EventParameters getParsedActionTypeParameters() {
             EventParameters evParameters;
-
-            List<String> titleList = new ArrayList<>();
-            List<String> descriptionList = new ArrayList<>();
+            String title;
+            String description;
             List<String> timeList = new ArrayList<>();
 
             System.out.println(" parsing create command...");
 
-            titleList.add(0, getWholeString(delegate.titleList));
-            descriptionList.add(0, getWholeString(delegate.descriptionList));
+            title = getWholeString(delegate.titleList);
+            description = getWholeString(delegate.descriptionList);
             if (delegate.timeStart.size() > 0)
                 timeList.add(0, delegate.timeStart.get(0));
             if (delegate.timeEnd.size() > 0)
                 timeList.add(1, delegate.timeEnd.get(0));
 
-            evParameters = new EventParameters(CREATE_CODE, titleList, descriptionList, delegate.attendersList, timeList);
+            evParameters = new EventParameters(CREATE_CODE, title, description, delegate.attendersList, timeList);
 
             delegate.clearAll();
             return evParameters;
@@ -247,9 +249,8 @@ public class ArgumentParser {
                     break;
 
                 case 2:  // search by title
-                    List<String> titleList = new ArrayList<>(1);
-
-                    titleList.add(0, getWholeString(delegate.titleList));
+                    String titleList;
+                    titleList = getWholeString(delegate.titleList);
                     eventParameters = new EventParameters(SEARCH_BY_TITLE_CODE, titleList, null, null, null);
                     break;
 

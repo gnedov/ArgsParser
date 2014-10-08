@@ -5,8 +5,8 @@ import java.util.List;
 public class EventParameters {
     private int actionTypeId;
     private List<String> parameters;
-    private List<String> titleList;
-    private List<String> descriptionList;
+    private String title;
+    private String description;
     private List<String> attendersList;
     private List<String> timeList;
 
@@ -24,11 +24,11 @@ public class EventParameters {
         this.parameters = parameters;
     }
 
-    public EventParameters(int actionTypeId, List<String> titleList, List<String> descriptionList,
+    public EventParameters(int actionTypeId, String title, String description,
                            List<String> attendersList, List<String> timeList) {
         this.actionTypeId = actionTypeId;
-        this.titleList = titleList;
-        this.descriptionList = descriptionList;
+        this.title = title;
+        this.description = description;
         this.attendersList = attendersList;
         this.timeList = timeList;
     }
@@ -49,12 +49,12 @@ public class EventParameters {
                 '}';
     }
 
-    public List<String> getTitleList() {
-        return titleList;
+    public String getTitle() {
+        return title;
     }
 
-    public List<String> getDescription() {
-        return descriptionList;
+    public String getDescription() {
+        return description;
     }
 
     public List<String> getAttenders() {
