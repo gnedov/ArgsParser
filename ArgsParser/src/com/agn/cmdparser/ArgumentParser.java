@@ -14,16 +14,14 @@ import static com.agn.cmdparser.ConstActionTypeEnum.*;
 
 
 public class ArgumentParser {
-    private boolean isBreak;
     private boolean isSearchMode;
     private JCommander jc;
     private Map<String, IActionTypeParameters> mapRun = new HashMap<>();
-    private final String DELIMITER_SPACE = " ";
+    private static final String DELIMITER_SPACE = " ";
     private static final String SEARCHENGINE_NUMBER = "-searchEngineNumber";
 
     public ArgumentParser() {
         jc = new JCommander();
-        isBreak = false;
         isSearchMode = false;
         initJCommander(jc);
     }
@@ -93,14 +91,9 @@ public class ArgumentParser {
                     return new EventParameters(SEARCH_CODE);// and wait user to select search engine with parameters.
                 }
 
-            case EXIT_CODE:
-                isBreak = true;
-                return null;
-
             default:
                 return mapRun.get(commandName).getParsedActionTypeParameters();
         }
-
     }
 
     // write once - use everywhere.
@@ -224,7 +217,7 @@ public class ArgumentParser {
 
         @Override
         public EventParameters getParsedActionTypeParameters() {
-            return null;
+            return new EventParameters(EXIT_CODE);
         }
     }
 
@@ -276,10 +269,6 @@ public class ArgumentParser {
         jc.usage();
     }
 
-    public boolean isBreak() {
-        return this.isBreak;
-    }
-
     private void setSearchModeON() {
         this.isSearchMode = true;
     }
@@ -292,7 +281,7 @@ public class ArgumentParser {
         return this.isSearchMode;
     }
 
-    private String getWholeString(List<String> arrStr) {
+    public static String getWholeString(List<String> arrStr) {
         StringBuilder sb = new StringBuilder();
         for (String s : arrStr) {
             sb.append(s);
