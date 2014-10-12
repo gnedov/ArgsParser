@@ -1,10 +1,14 @@
 package com.agn.validator;
 
 
+import org.joda.time.DateTime;
+
 import java.util.List;
 
 public interface EventValidator {
 
     boolean validateTitle(String title);
-    boolean validateTimeStartEnd(List<String> timeList);
+    boolean validateTimeStartEnd(List<DateTime> timeList);
+    DateTime validateTimeParse(String timeString);
+
 }
