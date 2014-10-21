@@ -1,6 +1,6 @@
 package com.agn.cmdparser;
 
-
+import com.agn.clndrclient.CalendarClient;
 import com.agn.validator.ActionParametersValidator;
 import com.beust.jcommander.ParameterException;
 
@@ -8,14 +8,24 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class ConsoleInput {
+    private final CalendarClient calendarClient;
+
+    public ConsoleInput(CalendarClient calendarClient) {
+
+        this.calendarClient = calendarClient;
+    }
+
+    public CalendarClient getCalendarClient() {
+        return calendarClient;
+    }
 
     public boolean startConsole(String[] args) {
         //hardcode! this line only for testing
         //    strToParse = "create -t eventTitle_hc -d descr bnbnb kkfkf -ts 2014-07-02T16:22:34 -te 2014-07-02T23:11:11 -att eeeee@mail.ff vvvvv@mail.ff ";
-
         if (args.length > 0) {
             doParse(ArgumentParser.getWholeString(Arrays.asList(args)));
-        }
+        } else
+            doParse(null);
         return true;
     }
 
@@ -23,7 +33,7 @@ public class ConsoleInput {
         EventParameters evParameters = new EventParameters();
         ArgumentParser argParser = new ArgumentParser();
         Scanner in = new Scanner(System.in);
-        ActionExecutor actionExecutor = new ActionExecutor();
+        ActionExecutor actionExecutor = new ActionExecutor(calendarClient);
         ActionParametersValidator validator = new ActionParametersValidator();
         while (true) {
             if (strToParse == null) {

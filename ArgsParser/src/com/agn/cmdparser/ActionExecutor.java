@@ -1,9 +1,16 @@
 package com.agn.cmdparser;
 
+import com.agn.clndrclient.CalendarClient;
+
 import static com.agn.cmdparser.ConstActionTypeEnum.*;
 
 public class ActionExecutor {
     private boolean isBreakApplication;
+    private final CalendarClient calendarClient;
+
+    public ActionExecutor(CalendarClient calendarClient) {
+         this.calendarClient = calendarClient;
+    }
 
     public boolean isBreakApplication() {
         return isBreakApplication;
@@ -27,7 +34,7 @@ public class ActionExecutor {
 
                 break;
             case SEARCH_ALL_CODE:
-                //call searchAll
+                System.out.println(calendarClient.searchAll().toString());
                 break;
             case SEARCH_BY_TITLE_CODE:
                 //call searchByTitle
