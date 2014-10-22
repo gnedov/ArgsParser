@@ -4,12 +4,12 @@ import com.agn.clndrclient.CalendarClient;
 
 import static com.agn.cmdparser.ConstActionTypeEnum.*;
 
-public class ActionExecutor {
+class ActionExecutor {
     private boolean isBreakApplication;
     private final CalendarClient calendarClient;
 
     public ActionExecutor(CalendarClient calendarClient) {
-         this.calendarClient = calendarClient;
+        this.calendarClient = calendarClient;
     }
 
     public boolean isBreakApplication() {

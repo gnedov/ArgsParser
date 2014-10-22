@@ -2,7 +2,7 @@ package com.agn.cmdparser;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
+// Tip is how to start without maven
 /* - to start application use command line like this:
 ..\ArgsParser\out\production\ArgsParser>java -cp ../../../lib/Spring_lib/*;../../../lib/*;. com.agn.cmdparser.Main
 
