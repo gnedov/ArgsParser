@@ -5,17 +5,26 @@ import java.util.Collection;
 import java.util.List;
 
 public class CalendarClientStubImpl implements CalendarClient{
+    private List<String> strList = new ArrayList<>();
+
     @Override
-    public Collection getSearchResult() {
-        return null;
+    public Collection getLastSearchResult() {
+
+        return strList;
     }
 
     @Override
-    public Collection searchAll() {
-        List<String> strList = new ArrayList<>();
+    public void searchAll() {
+        strList.clear();
         strList.add("ssew");
         strList.add("fdfg");
         strList.add("gyjtyj");
-        return strList;
+    }
+
+    @Override
+    public void searchByTitle(String eventTitle) {
+        strList.clear();
+        strList.add(eventTitle + " :1");
+        strList.add(eventTitle + " :2");
     }
 }

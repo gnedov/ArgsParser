@@ -34,10 +34,12 @@ class ActionExecutor {
 
                 break;
             case SEARCH_ALL_CODE:
-                System.out.println(calendarClient.searchAll().toString());
+                calendarClient.searchAll();
+                printLastSearchResult();
                 break;
             case SEARCH_BY_TITLE_CODE:
-                //call searchByTitle
+                calendarClient.searchByTitle(evParameters.getTitle());
+                printLastSearchResult();
                 break;
             case EXIT_CODE:
                 System.out.println("Goodbye!");
@@ -46,5 +48,10 @@ class ActionExecutor {
             default:
                 break;
         }
+    }
+
+    private void printLastSearchResult() {
+        System.out.println("The last search result is:");
+        System.out.println(calendarClient.getLastSearchResult());
     }
 }

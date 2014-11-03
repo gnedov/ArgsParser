@@ -3,8 +3,10 @@ package com.agn.clndrclient;
 import java.util.Collection;
 
 public interface CalendarClient {
-    Collection getSearchResult();
+    Collection getLastSearchResult();
 
-    Collection searchAll();
+    void searchAll();
+    
+    void searchByTitle(String eventTitle);
 
 }
