@@ -4,6 +4,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 import com.beust.jcommander.ParametersDelegate;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,8 +20,11 @@ public class ArgumentParser {
     private Map<String, IActionTypeParameters> mapRun = new HashMap<>();
     private static final String DELIMITER_SPACE = " ";
     private static final String SEARCHENGINE_NUMBER = "-searchEngineNumber";
+    private static final Logger LOG = Logger.getLogger(ArgumentParser.class);
 
     public ArgumentParser() {
+        if (LOG.isDebugEnabled())
+            LOG.debug("setup new instance ");
         jc = new JCommander();
         isSearchMode = false;
         initJCommander(jc);
@@ -31,7 +35,8 @@ public class ArgumentParser {
         if (jc == null) {
             jc = new JCommander();
         }
-
+        if (LOG.isDebugEnabled())
+            LOG.debug("got the new JCommander instance.");
         ParseCreate pCreate = new ParseCreate();
         ParseUpdate pUpdate = new ParseUpdate();
         ParseDelete pDelete = new ParseDelete();
@@ -58,27 +63,35 @@ public class ArgumentParser {
         jc.addCommand(pHelp);
         jc.addCommand(pSearch);
         jc.addCommand(closeApp);
+        if (LOG.isDebugEnabled())
+            LOG.debug("filled JCommander instance with handler objects: " + mapRun.size() + " commands.");
     }
 
     public EventParameters parse(String strToParse) {
         String commandName;
         String[] args;
         if (isSearchModeON()) {
-            strToParse = SEARCH + DELIMITER_SPACE + SEARCHENGINE_NUMBER + DELIMITER_SPACE + strToParse;
+            LOG.info("parsing search engine #" + strToParse.trim().split(DELIMITER_SPACE)[0]);
+            strToParse = SEARCH + DELIMITER_SPACE + SEARCHENGINE_NUMBER + DELIMITER_SPACE + strToParse.trim();
         }
-
-        args = strToParse.split(DELIMITER_SPACE);
+        LOG.info("string to parse is: " + strToParse);
+        args = strToParse.trim().split(DELIMITER_SPACE);
         try {
+            if (LOG.isDebugEnabled())
+                LOG.debug("try to parse by JCommander");
             jc.parse(args);
 
         } catch (Exception e) {
             System.out.println("some error with parsing: " + e.getMessage());
-
+            LOG.warn("some error with parsing: " + e.getMessage());
             return null;
         }
 
         commandName = jc.getParsedCommand();
         ConstActionTypeEnum cateAction = new ConstActionTypeEnum();
+
+        if (LOG.isDebugEnabled())
+            LOG.debug("parsed command is \"" + commandName + "\"");
 
         switch (cateAction.commandCode.get(commandName)) {
             case SEARCH_CODE:
@@ -127,6 +140,8 @@ public class ArgumentParser {
             timeStart.clear();
             timeEnd.clear();
             help.clear();
+            if (LOG.isDebugEnabled())
+                LOG.debug("Parser cleared its variables.");
         }
     }
 
@@ -134,6 +149,7 @@ public class ArgumentParser {
     private class ParseCreate implements IActionTypeParameters {
         @ParametersDelegate
         private DelegateParameters delegate = new DelegateParameters();
+        private final Logger LOG = Logger.getLogger(ParseCreate.class);
 
         @Override
         public EventParameters getParsedActionTypeParameters() {
@@ -142,7 +158,8 @@ public class ArgumentParser {
             String description;
             List<String> timeList = new ArrayList<>();
 
-            System.out.println(" parsing create command...");
+            if (LOG.isDebugEnabled())
+                LOG.debug(" parsing create command...");
 
             title = getWholeString(delegate.titleList);
             description = getWholeString(delegate.descriptionList);
@@ -150,7 +167,8 @@ public class ArgumentParser {
                 timeList.add(0, delegate.timeStart.get(0));
             if (delegate.timeEnd.size() > 0)
                 timeList.add(1, delegate.timeEnd.get(0));
-
+            if (LOG.isDebugEnabled())
+                LOG.debug("got EventParameters instance with:");
             evParameters = new EventParameters(CREATE_CODE, title, description, delegate.attendersList, timeList);
 
             delegate.clearAll();
@@ -223,6 +241,7 @@ public class ArgumentParser {
 
     @Parameters(commandNames = {SEARCH}, commandDescription = "- search one or several events.")
     private class ParseSearch implements IActionTypeParameters {
+        private final Logger LOG = Logger.getLogger(ParseSearch.class);
 
         @ParametersDelegate
         private DelegateParameters delegate = new DelegateParameters();
@@ -233,10 +252,12 @@ public class ArgumentParser {
 
         @Override
         public EventParameters getParsedActionTypeParameters() {
-            System.out.println(" parsing search command...");
+            if (LOG.isDebugEnabled())
+                LOG.debug(" parsing search command...");
             EventParameters eventParameters;
+            int inputEngineId = searchEngine.get(0);
 
-            switch (searchEngine.get(0)) {
+            switch (inputEngineId) {
                 case 1:  // search all events
                     eventParameters = new EventParameters(SEARCH_ALL_CODE);
                     break;
@@ -254,6 +275,8 @@ public class ArgumentParser {
 
                 default:
                     System.out.println("Wrong number! Please choose one of the available.");
+                    if (LOG.isDebugEnabled())
+                        LOG.debug("user chose unsupported search engine #" + inputEngineId);
                     setSearchModeON();
                     eventParameters = new EventParameters(SEARCH_CODE); // continue search mode
             }
@@ -270,10 +293,12 @@ public class ArgumentParser {
     }
 
     private void setSearchModeON() {
+        LOG.info("search mode is ON");
         this.isSearchMode = true;
     }
 
     private void setSearchModeOFF() {
+        LOG.info("search mode is OFF");
         this.isSearchMode = false;
     }
 

@@ -8,7 +8,9 @@ import java.util.List;
 public interface EventValidator {
 
     boolean validateTitle(String title);
+
     boolean validateTimeStartEnd(List<DateTime> timeList);
+
     DateTime validateTimeParse(String timeString);
 
 }

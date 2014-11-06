@@ -1,10 +1,13 @@
 package com.agn.validator;
 
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 
 import java.util.List;
 
 public class EventValidatorImpl implements EventValidator {
+    private static final Logger LOG = Logger.getLogger(EventValidatorImpl.class);
+
     @Override
     public boolean validateTimeStartEnd(List<DateTime> timeList) {
         DateTime timeStart = null;
@@ -12,11 +15,16 @@ public class EventValidatorImpl implements EventValidator {
         if (timeList.size() > 1) {
             timeStart = timeList.get(0);
             timeEnd = timeList.get(1);
-        } else System.out.println("Log: date is not defined!");
+        } else {
+            System.out.println("Date is not defined properly!");
+            LOG.warn("Date is not defined properly!");
+        }
 
         if (timeStart != null) {
             if (timeStart.isAfter(timeEnd)) {
                 System.out.println("Please set END date in future relatively to START date.");
+                LOG.warn("Start End dates sequence is broken! timeStart: " + timeStart.toString() +
+                        "; timeEnd: " + timeEnd.toString());
                 return false;
             }
         }
@@ -29,7 +37,7 @@ public class EventValidatorImpl implements EventValidator {
         try {
             timeParsed = DateTime.parse(timeString);
         } catch (Exception e) {
-            System.out.println("Log: date conversion error " + e.getMessage());
+            LOG.warn("date conversion error" + e.getMessage());
         }
         return timeParsed;
     }

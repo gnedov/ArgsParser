@@ -1,5 +1,7 @@
 package com.agn.cmdparser;
 
+import org.apache.log4j.Logger;
+
 import java.util.List;
 
 public class EventParameters {
@@ -9,6 +11,7 @@ public class EventParameters {
     private String description;
     private List<String> attendersList;
     private List<String> timeList;
+    private static final Logger LOG = Logger.getLogger(EventParameters.class);
 
     public EventParameters() {
         this.actionTypeId = 0;
@@ -17,6 +20,8 @@ public class EventParameters {
 
     public EventParameters(int actionTypeId) {
         this.actionTypeId = actionTypeId;
+        if (LOG.isDebugEnabled())
+            LOG.debug("actionTypeId: " + getActionTypeId());
     }
 
     public EventParameters(int actionTypeId, List<String> parameters) {
@@ -31,6 +36,11 @@ public class EventParameters {
         this.description = description;
         this.attendersList = attendersList;
         this.timeList = timeList;
+        if (LOG.isDebugEnabled())
+            LOG.debug("actionTypeId: " + getActionTypeId() + ";\n title: " + getTitle() +
+                    ";\n description: " + getDescription() +
+                    ";\n attendersList: " + getAttenders().toString() +
+                    ";\n timeList: " + getTimeList().toString());
     }
 
     public int getActionTypeId() {

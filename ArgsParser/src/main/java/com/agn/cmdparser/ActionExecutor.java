@@ -1,18 +1,22 @@
 package com.agn.cmdparser;
 
 import com.agn.clndrclient.CalendarClient;
+import org.apache.log4j.Logger;
 
 import static com.agn.cmdparser.ConstActionTypeEnum.*;
 
 class ActionExecutor {
     private boolean isBreakApplication;
     private final CalendarClient calendarClient;
+    private static final Logger LOG = Logger.getLogger(ActionExecutor.class);
 
     public ActionExecutor(CalendarClient calendarClient) {
         this.calendarClient = calendarClient;
     }
 
     public boolean isBreakApplication() {
+        if (LOG.isDebugEnabled())
+            LOG.debug("call isBreakApplication() returns " + isBreakApplication);
         return isBreakApplication;
     }
 
@@ -20,8 +24,11 @@ class ActionExecutor {
 
         switch (evParameters.getActionTypeId()) {
             case CREATE_CODE:
+                if (LOG.isDebugEnabled())
+                    LOG.debug("try to call service.createEvent(evParameters.getTitle(), ...) ");
                 //call service.createEvent(evParameters.getTitle(), ...)
                 System.out.println("Event <" + evParameters.getTitle() + "> is created! Congratulations!");
+
                 break;
             case UPDATE_CODE:
                 // call update ...
@@ -34,14 +41,20 @@ class ActionExecutor {
 
                 break;
             case SEARCH_ALL_CODE:
+                if (LOG.isDebugEnabled())
+                    LOG.debug("try to call calendarClient.searchAll() ");
                 calendarClient.searchAll();
                 printLastSearchResult();
                 break;
             case SEARCH_BY_TITLE_CODE:
+                if (LOG.isDebugEnabled())
+                    LOG.debug("try to call calendarClient.searchAll() ");
                 calendarClient.searchByTitle(evParameters.getTitle());
                 printLastSearchResult();
                 break;
             case EXIT_CODE:
+                if (LOG.isDebugEnabled())
+                    LOG.debug("application is going to exit ");
                 System.out.println("Goodbye!");
                 isBreakApplication = true;
                 break;

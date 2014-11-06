@@ -3,6 +3,9 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="Osmorc" url="file://H:/Libraries/apache-log4j-1.2.17" />
+  </component>
   <component name="IdProvider" IDEtalkID="00BD90CFC802CC495F37E5EF63B51E44" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">

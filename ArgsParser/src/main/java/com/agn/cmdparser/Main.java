@@ -1,8 +1,11 @@
 package com.agn.cmdparser;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-// Tip is how to start without maven
+
+
+// Tip defines how to start without maven
 /* - to start application use command line like this:
 ..\ArgsParser\out\production\ArgsParser>java -cp ../../../lib/Spring_lib/*;../../../lib/*;. com.agn.cmdparser.Main
 
@@ -14,10 +17,16 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 
 public class Main {
+    private static final Logger LOG = Logger.getLogger(Main.class);
+
     public static void main(String[] args) {
 
+        LOG.info("The application is started!");
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         ConsoleInput consoleInput = (ConsoleInput) context.getBean("consoleInput");
+
         consoleInput.startConsole(args);
+
+        LOG.info("The application is ended!");
     }
 }

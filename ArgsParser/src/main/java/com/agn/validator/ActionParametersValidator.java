@@ -1,6 +1,7 @@
 package com.agn.validator;
 
 import com.agn.cmdparser.EventParameters;
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
@@ -9,11 +10,12 @@ import java.util.List;
 import static com.agn.cmdparser.ConstActionTypeEnum.*;
 
 public class ActionParametersValidator {
+    private static final Logger LOG = Logger.getLogger(ActionParametersValidator.class);
 
     public boolean doValidate(EventParameters evParameters) {
         EventValidator eventValidator = new EventValidatorImpl();
-
-        System.out.println(" validate phase starts....");
+        if (LOG.isDebugEnabled())
+            LOG.debug(" validate phase starts...");
 
         switch (evParameters.getActionTypeId()) {
             case CREATE_CODE:

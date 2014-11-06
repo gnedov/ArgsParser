@@ -1,5 +1,7 @@
 package com.agn.cmdparser;
 
+import org.apache.log4j.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,10 +24,11 @@ public class ConstActionTypeEnum {
 
     public static final int SEARCH_CODE = 600;
     public static final int SEARCH_ALL_CODE = SEARCH_CODE + 1;
-    public static final int SEARCH_BY_TITLE_CODE = SEARCH_CODE + 2;
+    public static final int SEARCH_BY_TITLE_CODE = SEARCH_ALL_CODE + 1;
     public static final int EXIT_CODE = 999;
 
     public final Map<String, Integer> commandCode = new HashMap<>();
+    private static final Logger LOG  = Logger.getLogger(ConstActionTypeEnum.class);
 
     public ConstActionTypeEnum() {
         commandCode.put(CREATE, CREATE_CODE);
@@ -36,6 +39,8 @@ public class ConstActionTypeEnum {
         commandCode.put(HELP, HELP_CODE);
         commandCode.put(SEARCH, SEARCH_CODE);
         commandCode.put(EXIT, EXIT_CODE);
+        if (LOG.isDebugEnabled())
+            LOG.debug("commandCode collection is created with " + commandCode.size() + " commands.");
     }
 
 }
