@@ -21,6 +21,7 @@ public class ArgumentParser {
     private static final String DELIMITER_SPACE = " ";
     private static final String SEARCHENGINE_NUMBER = "-searchEngineNumber";
     private static final Logger LOG = Logger.getLogger(ArgumentParser.class);
+    private static final  ConstActionTypeEnum cateAction = new ConstActionTypeEnum();
 
     public ArgumentParser() {
         if (LOG.isDebugEnabled())
@@ -88,7 +89,6 @@ public class ArgumentParser {
         }
 
         commandName = jc.getParsedCommand();
-        ConstActionTypeEnum cateAction = new ConstActionTypeEnum();
 
         if (LOG.isDebugEnabled())
             LOG.debug("parsed command is \"" + commandName + "\"");

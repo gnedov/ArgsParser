@@ -17,10 +17,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 
 public class Main {
-    private static final Logger LOG = Logger.getLogger(Main.class);
-
     public static void main(String[] args) {
-
+        Logger LOG = Logger.getLogger(Main.class);
         LOG.info("The application is started!");
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         ConsoleInput consoleInput = (ConsoleInput) context.getBean("consoleInput");

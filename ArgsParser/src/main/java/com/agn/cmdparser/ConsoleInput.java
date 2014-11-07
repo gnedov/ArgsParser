@@ -16,7 +16,7 @@ public class ConsoleInput {
 
         this.calendarClient = calendarClient;
         if (LOG.isDebugEnabled())
-            LOG.debug("Initialized ConsoleInput with CalendarClient " + CalendarClient.class.getName());
+            LOG.debug("Initialized ConsoleInput with CalendarClient " + calendarClient.getClass().getName());
     }
 
     public CalendarClient getCalendarClient() {
@@ -33,7 +33,7 @@ public class ConsoleInput {
             doParse(inputString);
         } else{
             if (LOG.isDebugEnabled())
-                LOG.debug("try to start doParse() with NO input.");
+                LOG.debug("try to start doParse() without input arguments.");
             doParse(null);
         }
         return true;

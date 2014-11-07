@@ -47,6 +47,7 @@ public class EventValidatorImpl implements EventValidator {
     public boolean validateTitle(String title) {
         if (title == null || title.isEmpty()) {
             System.out.println("Please set proper event title!");
+            LOG.warn("event title is not correct!");
             return false;
         }
         return true;

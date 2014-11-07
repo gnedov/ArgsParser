@@ -39,8 +39,8 @@ public class EventParameters {
         if (LOG.isDebugEnabled())
             LOG.debug("actionTypeId: " + getActionTypeId() + ";\n title: " + getTitle() +
                     ";\n description: " + getDescription() +
-                    ";\n attendersList: " + getAttenders().toString() +
-                    ";\n timeList: " + getTimeList().toString());
+                    ";\n attendersList: " + getAttenders() +
+                    ";\n timeList: " + getTimeList());
     }
 
     public int getActionTypeId() {

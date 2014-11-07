@@ -13,7 +13,7 @@ public class CalendarClientStubImpl implements CalendarClient {
     @Override
     public Collection getLastSearchResult() {
         if (LOG.isDebugEnabled())
-            LOG.debug("call getLastSearchResult() returns list: " + strList.toString());
+            LOG.debug("call getLastSearchResult() returns list: " + strList);
         return strList;
     }
 
