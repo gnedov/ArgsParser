@@ -7,13 +7,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 // Tip defines how to start without maven
 /* - to start application use command line like this:
-..\ArgsParser\out\production\ArgsParser>java -cp ../../../lib/Spring_lib/*;../../../lib/*;. com.agn.cmdparser.Main
+..\AllGitRepository\ArgsParserREPO\ArgsParser\target\classes >java -cp ../../lib/Spring_lib/*;../../lib/*;. com.agn.cmdparser.Main
 
 - to make JAR:
-  H:\AllGitRepository\ArgsParserREPO\ArgsParser\out\production\ArgsParser>jar -cvmf manifest.txt MainConsoleInput.jar .
+..\AllGitRepository\ArgsParserREPO\ArgsParser\target\classes>jar -cvmf ..\manifest.txt ..\ArgsParser-1.0-SNAPSHOT.jar *
 
 - to start JAR:
-..\ArgsParserREPO\ArgsParser\lib>java -cp "Spring_lib/*;MainConsoleInput.jar;*" com.agn.cmdparser.Main
+..\AllGitRepository\ArgsParserREPO\ArgsParser\target>java -cp "../lib/Spring_lib/*;../lib/*;./ArgsParser-1.0-SNAPSHOT.jar" com.agn.cmdparser.Main
  */
 
 public class Main {

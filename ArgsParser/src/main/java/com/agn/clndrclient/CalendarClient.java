@@ -6,7 +6,7 @@ public interface CalendarClient {
     Collection getLastSearchResult();
 
     void searchAll();
-    
+
     void searchByTitle(String eventTitle);
 
 }
