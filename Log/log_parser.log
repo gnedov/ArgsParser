@@ -1,0 +1,21 @@
+2014-11-26 16:19:10.815 INFO                       Main:22  - The application is started!
+2014-11-26 16:19:12.177 DEBUG              ConsoleInput:19  - Initialized ConsoleInput with CalendarClient com.agn.clndrclient.CalendarClientStubImpl
+2014-11-26 16:19:12.227 DEBUG       ConstActionTypeEnum:43  - commandCode collection is created with 8 commands.
+2014-11-26 16:19:12.227 DEBUG              ConsoleInput:32  - try to start doParse() with input: create -t eventTitle_hc -d descr bnbnb kkfkf -ts 2014-07-02T16:22:34 -te 2014-07-02T23:11:11 -att eeeee@mail.ff vvvvv@mail.ff
+2014-11-26 16:19:12.247 DEBUG            ArgumentParser:28  - setup new instance 
+2014-11-26 16:19:12.348 DEBUG            ArgumentParser:40  - got the new JCommander instance.
+2014-11-26 16:19:12.518 DEBUG            ArgumentParser:68  - filled JCommander instance with handler objects: 8 commands.
+2014-11-26 16:19:12.568 DEBUG              ConsoleInput:49  - try to enter to infinite loop...
+2014-11-26 16:19:12.568 INFO             ArgumentParser:78  - string to parse is: create -t eventTitle_hc -d descr bnbnb kkfkf -ts 2014-07-02T16:22:34 -te 2014-07-02T23:11:11 -att eeeee@mail.ff vvvvv@mail.ff
+2014-11-26 16:19:12.578 DEBUG            ArgumentParser:82  - try to parse by JCommander
+2014-11-26 16:19:12.598 DEBUG            ArgumentParser:94  - parsed command is "create"
+2014-11-26 16:19:12.598 DEBUG rgumentParser$ParseCreate:162 -  parsing create command...
+2014-11-26 16:19:12.598 DEBUG rgumentParser$ParseCreate:171 - got EventParameters instance with:
+2014-11-26 16:19:12.598 DEBUG           EventParameters:40  - actionTypeId: 100;
+ title: eventTitle_hc;
+ description: descr bnbnb kkfkf;
+ attendersList: [eeeee@mail.ff, vvvvv@mail.ff];
+ timeList: [2014-07-02T16:22:34, 2014-07-02T23:11:11]
+2014-11-26 16:19:12.598 DEBUG            ArgumentParser:144 - Parser cleared its variables.
+2014-11-26 16:19:12.988 DEBUG            ActionExecutor:28  - try to call service.createEvent(evParameters.getTitle(), ...) 
+2014-11-26 16:19:12.988 DEBUG            ActionExecutor:19  - call isBreakApplication() returns false
