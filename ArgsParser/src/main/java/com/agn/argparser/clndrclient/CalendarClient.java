@@ -1,4 +1,4 @@
-package com.agn.clndrclient;
+package com.agn.argparser.clndrclient;
 
 import java.util.Collection;
 

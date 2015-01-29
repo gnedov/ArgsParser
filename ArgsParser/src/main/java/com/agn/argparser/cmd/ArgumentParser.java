@@ -1,4 +1,4 @@
-package com.agn.cmdparser;
+package com.agn.argparser.cmd;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
@@ -11,13 +11,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.agn.cmdparser.ConstActionTypeEnum.*;
+import static com.agn.argparser.cmd.ConstActionTypeEnum.*;
 
 
 public class ArgumentParser {
     private boolean isSearchMode;
     private JCommander jc;
-    private Map<String, IActionTypeParameters> mapRun = new HashMap<>();
+    private Map<String, ActionTypeParameters> mapRun = new HashMap<>();
     private static final String DELIMITER_SPACE = " ";
     private static final String SEARCHENGINE_NUMBER = "-searchEngineNumber";
     private static final Logger LOG = Logger.getLogger(ArgumentParser.class);
@@ -146,7 +146,7 @@ public class ArgumentParser {
     }
 
     @Parameters(commandNames = {CREATE}, commandDescription = "- creates a new event from console input data.")
-    private class ParseCreate implements IActionTypeParameters {
+    private class ParseCreate implements ActionTypeParameters {
         @ParametersDelegate
         private DelegateParameters delegate = new DelegateParameters();
         private final Logger LOG = Logger.getLogger(ParseCreate.class);
@@ -177,7 +177,7 @@ public class ArgumentParser {
     }
 
     @Parameters(commandNames = {UPDATE}, commandDescription = "- updates the event by title.")
-    private class ParseUpdate implements IActionTypeParameters {
+    private class ParseUpdate implements ActionTypeParameters {
         @ParametersDelegate
         private DelegateParameters delegate = new DelegateParameters();
 
@@ -189,7 +189,7 @@ public class ArgumentParser {
     }
 
     @Parameters(commandNames = {DELETE}, commandDescription = "- delete event.")
-    private class ParseDelete implements IActionTypeParameters {
+    private class ParseDelete implements ActionTypeParameters {
 
         @Override
         public EventParameters getParsedActionTypeParameters() {
@@ -199,7 +199,7 @@ public class ArgumentParser {
     }
 
     @Parameters(commandNames = {DISPLAY}, commandDescription = "- show event.")
-    private class ParseDisplay implements IActionTypeParameters {
+    private class ParseDisplay implements ActionTypeParameters {
 
         @Override
         public EventParameters getParsedActionTypeParameters() {
@@ -209,7 +209,7 @@ public class ArgumentParser {
     }
 
     @Parameters(commandNames = {LOAD}, commandDescription = "- load event from file.")
-    private class ParseLoad implements IActionTypeParameters {
+    private class ParseLoad implements ActionTypeParameters {
 
         @Override
         public EventParameters getParsedActionTypeParameters() {
@@ -219,7 +219,7 @@ public class ArgumentParser {
     }
 
     @Parameters(commandNames = {HELP}, commandDescription = "- show help.")
-    private class ParseHelp implements IActionTypeParameters {
+    private class ParseHelp implements ActionTypeParameters {
 
         @Override
         public EventParameters getParsedActionTypeParameters() {
@@ -231,7 +231,7 @@ public class ArgumentParser {
     }
 
     @Parameters(commandNames = {EXIT, "quit", "break"}, commandDescription = "- close application.")
-    private class CloseApp implements IActionTypeParameters {
+    private class CloseApp implements ActionTypeParameters {
 
         @Override
         public EventParameters getParsedActionTypeParameters() {
@@ -240,7 +240,7 @@ public class ArgumentParser {
     }
 
     @Parameters(commandNames = {SEARCH}, commandDescription = "- search one or several events.")
-    private class ParseSearch implements IActionTypeParameters {
+    private class ParseSearch implements ActionTypeParameters {
         private final Logger LOG = Logger.getLogger(ParseSearch.class);
 
         @ParametersDelegate

@@ -1,7 +1,7 @@
-package com.agn.cmdparser;
+package com.agn.argparser.cmd;
 
-import com.agn.clndrclient.CalendarClient;
-import com.agn.validator.ActionParametersValidator;
+import com.agn.argparser.clndrclient.CalendarClient;
+import com.agn.argparser.validator.ActionParametersValidator;
 import com.beust.jcommander.ParameterException;
 import org.apache.log4j.Logger;
 

@@ -1,4 +1,4 @@
-package com.agn.cmdparser;
+package com.agn.argparser.cmd;
 
 import org.apache.log4j.Logger;
 

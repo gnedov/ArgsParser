@@ -1,9 +1,9 @@
-package com.agn.cmdparser;
+package com.agn.argparser.cmd;
 
-import com.agn.clndrclient.CalendarClient;
+import com.agn.argparser.clndrclient.CalendarClient;
 import org.apache.log4j.Logger;
 
-import static com.agn.cmdparser.ConstActionTypeEnum.*;
+import static com.agn.argparser.cmd.ConstActionTypeEnum.*;
 
 class ActionExecutor {
     private boolean isBreakApplication;

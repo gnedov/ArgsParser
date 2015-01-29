@@ -1,13 +1,13 @@
-package com.agn.validator;
+package com.agn.argparser.validator;
 
-import com.agn.cmdparser.EventParameters;
+import com.agn.argparser.cmd.EventParameters;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.agn.cmdparser.ConstActionTypeEnum.*;
+import static com.agn.argparser.cmd.ConstActionTypeEnum.*;
 
 public class ActionParametersValidator {
     private static final Logger LOG = Logger.getLogger(ActionParametersValidator.class);
